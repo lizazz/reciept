@@ -6,3 +6,4 @@ complete the install of dependencies with command: composer install
 generate app key with command: php artisan key:generate
 make migration with command: php artisan migrate
 create symlink with command: php artisan storage:link
+Install grunt in public/custom  npm install and grunt 
