@@ -2,10 +2,8 @@
 
 namespace App;
 
-use App\Models\User\Role;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Activitylog\Traits\CausesActivity;
 
 /**
  * Class User
@@ -13,7 +11,7 @@ use Spatie\Activitylog\Traits\CausesActivity;
  */
 class User extends Authenticatable
 {
-    use Notifiable, CausesActivity;
+    use Notifiable;
 
     protected $table = 'users';
 
