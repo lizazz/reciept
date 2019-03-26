@@ -20,3 +20,6 @@
 В комментариях укажите пожалуйста название и версию фреймворка, а также все сторонние библиотеки, если таковые были.
 
 Deploy instruction: https://github.com/lizazz/reciept/blob/master/install.txt
+
+Login data:'email' => 'admin@example.com',
+                'password' => '.xHfBg>M;>2!f#U'
