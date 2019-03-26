@@ -1,0 +1,8 @@
+clone project from gitlab git clone https://github.com/lizazz/reciept.git
+config project root - url must look in /public/index.php
+config env file - set database settings
+install composer (https://losst.ru/ustanovka-composer-ubuntu-16-04)
+complete the install of dependencies with command: composer install
+generate app key with command: php artisan key:generate
+make migration with command: php artisan migrate
+create symlink with command: php artisan storage:link

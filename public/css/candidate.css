@@ -1,0 +1,38 @@
+/*------View candidate--------*/
+.header-action-item {
+  float: right;
+  padding: 0px 5px;
+  position: absolute;
+  top: 12px;
+  right: 10px;
+}
+
+.header-action-item form {
+  display: inline-block;
+}
+
+/*--------- New candidate ----------*/
+.new-candidate__box-sociallinks input[name="social_links[]"] {
+  padding-right: 33px;
+}
+
+.new-candidate__box-sociallinks .fa-minus-circle {
+  position: relative;
+  margin-left: calc(100% - 27px);
+  top: -26px;
+  cursor: pointer;
+}
+
+/*------- Edit candidate ----------*/
+.ed-candidate__box-sociallinks input[name="social_links[]"] {
+  padding-right: 33px;
+}
+
+.ed-candidate__box-sociallinks .fa-minus-circle {
+  position: relative;
+  margin-left: calc(100% - 27px);
+  top: -26px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=candidate.css.map */

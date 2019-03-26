@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Members Only"
+AuthUserFile /var/www/clients/client0/recruit-tsn-media.vagrant.devtestnet.com_web45/web/stats/.htpasswd_stats
+require valid-user

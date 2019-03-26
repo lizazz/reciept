@@ -1,0 +1,17 @@
+@import 'vendors/normalize';
+@import 'vendors/reset';
+@import 'pages/pages-edit';
+@import 'pages/logs';
+@import 'pages/profile';
+@import 'pages/job';
+@import 'pages/modal-window';
+@import 'pages/candidats';
+@import 'pages/dashboard';
+@import 'pages/modal';
+
+
+html,
+body,
+body * {
+    font-family: 'Source Sans Pro', sans-serif;
+}

@@ -1,0 +1,53 @@
+create table articles
+
+example 
+CREATE TABLE articles (
+    id INT NOT NULL AUTO_INCREMENT,
+    subject VARCHAR(255),
+    content VARCHAR(5000),
+    user  varchar(255),
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    PRIMARY KEY(id)
+) ENGINE=INNODB;
+
+example with relation
+
+CREATE TABLE articles (
+    id INT NOT NULL AUTO_INCREMENT,
+    subject VARCHAR(255),
+    content VARCHAR(5000),
+    user  int(10) UNSIGNED,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+    PRIMARY KEY(id),
+    INDEX aut_id (user),
+    FOREIGN KEY (user)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+) ENGINE=INNODB;
+
+
+php artisan laracrudmvc:make
+
+or 
+
+(php artisan laracrud:model articles
+php artisan laracrud:controller Article Admin/Articles/ArticleController
+php artisan laracrud:request articles --resource=edit,update,destroy
+php artisan laracrud:view articles
+php artisan laracrud:route Admin/Articles/ArticleController)
+
+
+add user model in controller and model
+move route to admin section and rename controller name and add middleware
+add route on show
+Route::get('articles/{article}','Admin\Articles\ArticleController@show')->middleware('auth:front');
+
+add menu in config/adminlte.php
+[
+    'text'        => 'Articles',
+    'url'         => 'admin/articles',
+    'icon'        => 'file',
+    'label_color' => 'success',
+],

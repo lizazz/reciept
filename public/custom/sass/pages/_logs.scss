@@ -1,0 +1,108 @@
+/*------ logs ----------*/
+#table-log_filter {
+    margin-bottom: 20px;
+}
+
+#table-log_length {
+    margin-bottom: 20px;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+}
+
+.dataTables_filter label {
+    position: relative;
+
+    &:before {
+        content: url(../search-solid.svg);
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        color: #000;
+        width: 18px;
+    }
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+    border: 1px solid #ccc;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+    display: none;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    padding: 22px 0;
+
+    @media (max-width: 860px) {
+        float: none;
+        text-align: center;
+    }
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin: 0;
+    padding: 12px 0;
+    margin-bottom: 25px;
+
+    @media (max-width: 860px) {
+        text-align: center;
+        float: none;
+    }
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    @media (max-width: 402px) {
+        padding: 0.5em 0.5em !important;
+    }
+}
+
+.p-3 {
+    text-align: center;
+
+    @media (max-width: 402px) {
+        display: block;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    .btn {
+        @media (max-width: 402px) {
+            display: block;
+            margin-bottom: 25px;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.dataTables_wrapper.no-footer div.dataTables_scrollBody>table {
+    width: 100% !important;
+}
+
+.dataTables_wrapper.no-footer div.dataTables_scrollHead table.dataTable {
+    width: 100% !important;
+}
+
+.dataTables_scrollHeadInner {
+    width: 100% !important;
+}
+
+.dataTables_scrollHeadInner {
+    width: 100% !important;
+}

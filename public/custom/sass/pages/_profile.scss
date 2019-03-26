@@ -1,0 +1,27 @@
+/*------ profile ------*/
+.profile {
+    .btn-default {
+        color: #495057;
+        background-color: #ddd;
+        border-color: #ddd;
+    }
+
+    .btn-default:hover {
+        color: #495057;
+        background-color: #ccc;
+        border-color: #ccc;
+    }
+
+    .btn-default.focus,
+    .btn-default:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+        box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
+    }
+
+    .btn-default.disabled,
+    .btn-default:disabled {
+        color: #495057;
+        background-color: #eee;
+        border-color: #eee;
+    }
+}
