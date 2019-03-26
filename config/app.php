@@ -152,7 +152,6 @@ return [
          */
         Unisharp\Ckeditor\ServiceProvider::class,
         Barryvdh\Elfinder\ElfinderServiceProvider::class,
-        LaraCrud\LaraCrudServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
 
