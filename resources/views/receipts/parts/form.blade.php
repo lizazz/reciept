@@ -35,23 +35,25 @@
                 $showIngredients = [];
                 if (old('ingredients') && count(old('ingredients'))) {
                     $chosenIngredients = old('ingredients');
-                  //  dd(old('ingredients'));
-                  /*  if(isset($chosenIngredients['name']) && count($chosenIngredients['name'])) {
+
+                    if(isset($chosenIngredients['name']) && count($chosenIngredients['name'])) {
                         $countChosenIngredients = count($chosenIngredients['name']);
 
                         for ($i = 0; $i < $countChosenIngredients; $i++) {
-                            $chosenQuantity = 0;
+                            if ((int) $chosenIngredients['name'][$i] != null) {
+                                $chosenQuantity = 0;
 
-                            if (isset($chosenIngredients['quantity'][$i])) {
-                                $chosenQuantity = $chosenIngredients['quantity'][$i];
+                                if (isset($chosenIngredients['quantity'][$i])) {
+                                    $chosenQuantity = $chosenIngredients['quantity'][$i];
+                                }
+
+                                $showIngredients[] = [
+                                    'id' => $chosenIngredients['name'][$i],
+                                    'quantity' => $chosenQuantity
+                                ];
                             }
-
-                            $showIngredients[] = [
-                                'id' => $chosenIngredients['name'][$i],
-                                'quantity' => $chosenQuantity
-                            ];
                         }
-                    }*/
+                    }
 
                 } elseif (isset($existIngredients) && count($existIngredients)) {
 
@@ -68,57 +70,69 @@
                 }
 
             @endphp
-            <div class="row" id="ingredients_container">
-                @foreach($showIngredients as $showIngredient)
+            @if (\count($ingredients) > 1)
+                <div class="row" id="ingredients_container">
+                    @foreach($showIngredients as $showIngredient)
+                        <div  class="col-md-12 new-receipt__box-ingredients">
+                            <div class="form-group col-md-3" >
+                                <select name="ingredients[name][]" value="{{$showIngredient['id']}}" class = "form-control">
+                                    @foreach($ingredients as $id => $ingredient)
+                                        @php  $selected = '';
+                                    if($showIngredient['id'] == $id) {
+                                        $selected = 'selected="selected"';
+                                    }
+                                        @endphp
+                                        <option value="{{$id}}" {{$selected}}>{{$ingredient}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="input-group col-md-3">
+                                {{ Form::number(
+                                    "ingredients[quantity][]",
+                                     $showIngredient['quantity'],
+                                    $attributes = ['class' => 'form-control']
+                                ) }}
+
+                                <span class="input-group-btn">
+                                    <button class='btn btn-danger' onclick='removeIngredientField(this)' type='button'><i class='fa fa-minus'></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    @endforeach
                     <div  class="col-md-12 new-receipt__box-ingredients">
                         <div class="form-group col-md-3" >
-
-                            {{ Form::select("ingredients[name][]", $ingredients, (int) $showIngredient['id'],
-                            $attributes = [
-                                'class' => 'form-control',
-                                'disabled' => count($ingredients) ? false : 'disabled',
-                                'placeholder' => count($ingredients) ?
-                                    __('recruit.select_ingredient') :
-                                    __('lagarto.no_ingredients')]) }}
+                            <select name="ingredients[name][]" class = "form-control">
+                                @foreach($ingredients as $id => $ingredient)
+                                    @php  $selected = '';
+                                    if($id == null) {
+                                        $selected = 'selected="selected" disabled="disabled"';
+                                    }
+                                    @endphp
+                                    <option value="{{$id}}" {{$selected}}>{{$ingredient}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="input-group col-md-3">
-                            {{ Form::number(
-                                "ingredients[quantity][]",
-                                 $showIngredient['quantity'],
-                                $attributes = ['class' => 'form-control']
-                            ) }}
+                                {{ Form::number(
+                                    "ingredients[quantity][]",
+                                     0,
+                                    $attributes = ['class' => 'form-control']
+                                ) }}
 
-                            <span class="input-group-btn">
-                                <button class='btn btn-danger' onclick='removeIngredientField(this)' type='button'><i class='fa fa-minus'></i></button>
-                            </span>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" onclick="addIngredientField(this)" type="button"><i class="fa fa-plus"></i></button>
+                                </span>
                         </div>
                     </div>
-                @endforeach
-                <div  class="col-md-12 new-receipt__box-ingredients">
-                    <div class="form-group col-md-3" >
-
-                        {{ Form::select("ingredients[name][]", $ingredients, 0,
-                        $attributes = [
-                            'class' => 'form-control',
-                            'disabled' => count($ingredients) ? false : 'disabled',
-                            'placeholder' => count($ingredients) ?
-                                __('recruit.select_ingredient') :
-                                __('lagarto.no_ingredients')]) }}
-                    </div>
-                    <div class="input-group col-md-3">
-                            {{ Form::number(
-                                "ingredients[quantity][]",
-                                 0,
-                                $attributes = ['class' => 'form-control']
-                            ) }}
-
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" onclick="addIngredientField(this)" type="button"><i class="fa fa-plus"></i></button>
-                            </span>
+                    <div class="col-md-6"></div>
+                </div>
+            @else
+                <div class="row">
+                    <div class="form-group col-md-6 new-receipt__box-ingredients">
+                        @lang("recruit.no_ingredients")
                     </div>
                 </div>
-                <div class="col-md-6"></div>
-            </div>
+            @endif
             <div class="row">
                 <div class="box-header with-border">
                     <a href="{{ route('ingredients.create') }}" class="btn btn-success" role="button">@lang('recruit.create_new_ingredient')</a>
@@ -142,13 +156,16 @@
         function addIngredientField() {
             var newInput = "<div  class='col-md-12 new-receipt__box-ingredients'>" +
                "<div class='form-group col-md-3 ' >" +
-                    '{{ Form::select("ingredients[name][]", $ingredients, null,
-                        $attributes = [
-                            "class" => "form-control",
-                            "disabled" => count($ingredients) ? false : "disabled",
-                            "placeholder" => count($ingredients) ?
-                                __("recruit.select_ingredient") :
-                                __("lagarto.no_ingredients")]) }}' +
+                    "<select name='ingredients[name][]' class = 'form-control'>" +
+                    @foreach($ingredients as $id => $ingredient)
+                    @php  $selected = '';
+                                if($id == null) {
+                                    $selected = ' selected disabled ';
+                                }
+                    @endphp
+                "<option value='{{$id}}' {{$selected}}>{{$ingredient}}</option>" +
+                    @endforeach
+                "</select>" +
                "</div>" +
                "<div class='input-group col-md-3'>" +
                    '{{ Form::number("ingredients[quantity][]", 0 , $attributes = ["class" => "form-control"]) }}' +

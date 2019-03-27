@@ -82,7 +82,7 @@ class IngredientService
      */
     public function getAll()
     {
-        $ingredients = [];
+        $ingredients = [null => __('recruit.select_ingredient') ];
         $ingredientCollections = Ingredient::all();
 
         foreach ($ingredientCollections as $ingredientCollection) {

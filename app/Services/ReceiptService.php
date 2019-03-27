@@ -50,9 +50,9 @@ class ReceiptService
                 for ($i = 0; $i < $ingredientCount; $i++ ) {
                     if (isset($ingredientArray['quantity'][$i])) {
                         ReceiptIngredients::create([
-                            'receipt_id' => $receipt->id,
-                            'ingredient_id' => $ingredientArray['name'][$i],
-                            'quantity' => $ingredientArray['quantity'][$i]
+                            'receipt_id' => (int) $receipt->id,
+                            'ingredient_id' => (int) $ingredientArray['name'][$i],
+                            'quantity' => (int) $ingredientArray['quantity'][$i]
                         ]);
                     }
                 }
